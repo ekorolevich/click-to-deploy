@@ -27,8 +27,42 @@ gcloud auth configure-docker
 ```shell
 docker -- pull marketplace.gcr.io/google/activemq5
 ```
+## Table of Contents
 
+ [Using Docker](#using-docker)
+  * [Run a  server](#run-a-activemq-server-docker)
+    * [Start a activemq instance](#start-a-activemq-instance-docker)
+    * [Use a persistent data volume](#use-a-persistent-data-volume-docker)
+  * [Configurations](#configurations-docker)
+    * [Using flags](#using-flags-docker)
+    * [Authentication and authorization](#authentication-and-authorization-docker)
+  * [Mongo CLI](#mongo-cli-docker)
+    * [Connect to a running activemq container](#connect-to-a-running-activemq-container-docker)
+    * [Connect to a remote activemq server](#connect-to-a-remote--server-docker)
+* [References](#references)
+  * [Ports](#references-ports)
+  * [Volumes](#references-volumes)
 
+# Using Docker
+
+Consult [Launcher container documentation](https://cloud.google.com/launcher/docs/launcher-container)
+for additional information about setting up your Docker environment.
+
+Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
+
+```yaml
+version: '2'
+services:
+  activemq:
+    container_name: some-activemq
+    image: marketplace.gcr.io/google/activemq5
+    ports:
+      - '5672:5672'
+      - '61613:61613' 
+      - '1883:1883'
+      - '61614:61614'
+      - '8161:8161'
+  ```
 
 
 
